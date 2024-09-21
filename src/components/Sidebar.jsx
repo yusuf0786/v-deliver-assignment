@@ -28,6 +28,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { InputBase } from '@mui/material';
+import { color } from 'chart.js/helpers';
+import notifiIcon from '../assets/icons/notification-icon.svg'
+import chatIcon from '../assets/icons/chat-icon.svg'
+import gearIcon from '../assets/icons/gear-icon.svg'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const drawerWidth = 240;
 
@@ -138,11 +143,13 @@ justifyContent: 'center',
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
 color: 'inherit',
 '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
+    // padding: theme.spacing(1, 1, 1, 0),
+    padding: "8px 18px 8px 12px",
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    color: "#B3B3B3",
     [theme.breakpoints.up('md')]: {
     width: '20ch',
     },
@@ -170,36 +177,40 @@ export default function Sidebar() {
         setAnchorEl(event.currentTarget);
       };
 
-      const handleMenuClose = () => {
-        setAnchorEl(null);
-      };
+    const handleMenuClose = () => {
+      setAnchorEl(null);
+    };
 
-        const menuId = 'primary-search-account-menu';
-        const renderMenu = (
-            <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-            >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            </Menu>
-        );
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+        >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
 
     return (
         <>
         <CssBaseline />
-        <AppBar position="fixed" open={open} style={{"--Paper-shadow": "0px 2px 4px -1px rgba(0,0,0,0.05),0px 4px 5px 0px rgba(255,255,255,0.05),0px 1px 10px 0px rgba(255,255,255,0.05)"}}>
+        <AppBar
+        position="fixed"
+        open={open}
+        style={{"--Paper-shadow": "0px 2px 4px -1px rgba(0,0,0,0.05),0px 4px 5px 0px rgba(255,255,255,0.05),0px 1px 10px 0px rgba(255,255,255,0.05)"}}
+        >
             <Toolbar sx={{backgroundColor: "#fff",}}>
             <IconButton
                 color="inherit"
@@ -216,43 +227,60 @@ export default function Sidebar() {
             >
                 <MenuIcon />
             </IconButton>
-            <Search>
+            <Search sx={{display: {xs: "none",  lg: "inline-block"}}}>
                 <SearchIconWrapper>
-                    <SearchIcon sx={{color:"#000"}} />
+                    <SearchIcon sx={{color:"#272727"}} />
                 </SearchIconWrapper>
                 <StyledInputBase
-                    sx={{border: "1px solid #dbdbdb", borderRadius: "5px", color: "#000",}}
+                    sx={{border: "1px solid #CCCCCC", borderRadius: "8px", color: "#000",}}
                     placeholder="Search anything…"
                     inputProps={{ 'aria-label': 'search' }}
                 />
             </Search>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton size="large" aria-label="show 4 new mails" color="#000">
-                <Badge badgeContent={4} color="error">
-                    <MailIcon />
+            <Box sx={{ display: {xs: open ? "none" : "flex", lg: 'flex'}, gap: 3, padding: "1rem 0", alignItems: "stretch",}}>
+                <IconButton size="large" aria-label="show 21 new notifications" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}>
+                <Badge badgeContent={21} color="secondary">
+                    {/* <MailIcon /> */}
+                    <img src={notifiIcon} alt="notification icon" />
+                </Badge>
+                </IconButton>
+                <IconButton size="large" aria-label="show 53 new chats" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}>
+                <Badge badgeContent={53} color="secondary">
+                    {/* <MailIcon /> */}
+                    <img src={chatIcon} alt="chat icon" />
                 </Badge>
                 </IconButton>
                 <IconButton
+                sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}
                 size="large"
-                aria-label="show 17 new notifications"
+                aria-label="show 19 new alerts"
                 color="#000"
                 >
-                <Badge badgeContent={17} color="error">
-                    <NotificationsIcon />
+                <Badge badgeContent={17} color="info">
+                    {/* <NotificationsIcon /> */}
+                    <img src={gearIcon} alt="gear icon" />
                 </Badge>
                 </IconButton>
-                <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
+                <Divider aria-hidden="true" orientation="vertical" sx={{height: "inherit",}} />
+                <Box 
                 onClick={handleProfileMenuOpen}
-                color="inherit"
+                sx={{cursor: "pointer",}}
                 >
-                <AccountCircle />
-                </IconButton>
+                  <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  color="#000"
+                  sx={{mr: 0.75}}
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                  <span style={{color: "#000",}}>Hi, Saikumar</span>
+                  <ArrowDropDownIcon sx={{color: "#000", verticalAlign:"middle", }}/>
+                </Box>
             </Box>
             </Toolbar>
         </AppBar>
@@ -264,7 +292,7 @@ export default function Sidebar() {
                 </IconButton>
             </DrawerHeader>
             <Divider />
-            <List>
+            <List sx={{pt:10}}>
                 {[
                     {listItemText: "Home", listItemIcon: <HomeIcon />},
                     {listItemText: "Other", listItemIcon: <img src={otherIcon}/>},

@@ -80,10 +80,11 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0, // Extra small
-      sm: 600, // Small
-      md: 900, // Medium
-      lg: 1200, // Large
-      xl: 1536, // Extra large
+      sm: 576, // Small
+      md: 768, // Medium
+      lg: 992, // Large
+      xl: 1200, // Extra large
+      xxl: 1440, // Extra Extra large
     },
   },
 
@@ -99,11 +100,42 @@ const theme = createTheme({
 
   // Shape (border radius)
   shape: {
-    borderRadius: 4, // Default border radius
+    borderRadius: 8, // Default border radius
   },
 
   // Components
   components: {
+    MuiBadge: {
+      styleOverrides: {
+        root: {
+          // border: "10px solid #000",
+          '& .MuiBadge-badge': {
+            border: '3px solid #EAEBFF',  // Custom border color
+            borderRadius: '50%',  // Makes the badge circular
+            width: "25px",
+            height: "25px",
+            fontSize: "11px",
+            top: "-6px",
+            right: "-6px",
+          },
+        },
+        colorPrimary: {
+          backgroundColor: '#ff5722', // Custom color for primary badge
+          color: '#fff',  // Custom text color
+        },
+        colorSecondary: {
+          backgroundColor: '#252762', // Custom color for secondary badge
+          color: '#fff',  // Custom text color
+        },
+        colorInfo: {
+          backgroundColor: '#FF5B5B', // Custom color for secondary badge
+          color: '#fff',  // Custom text color
+        },
+        dot: {
+          backgroundColor: '#ff5722', // Custom color for badge with dot variant
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
