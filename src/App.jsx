@@ -1,10 +1,22 @@
 import React from 'react';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material';
+import './assets/style.css'
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography, Paper } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import Sidebar from './components/Sidebar';
 import { ThemeProvider } from '@emotion/react';
 import theme from './assets/theme/theme';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
+import { DetailsCards } from './components/DetailsCards';
+import SectorPerformance from './components/SectorPerformance';
+import TotalOrders from './components/TotalOrders';
+
+import statsBarIcon from './assets/icons/stats-bar-Icon.svg'
+import userIcon from './assets/icons/user-Icon.svg'
+import cartIcon from './assets/icons/cart-Icon.svg'
+import graphLine1 from './assets/icons/graph-line1.svg'
+import graphLine2 from './assets/icons/graph-line2.svg'
+import graphLine3 from './assets/icons/graph-line3.svg'
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -33,13 +45,24 @@ function App() {
     setLocation(event.target.value);
   };
 
+  const detailsCardsData = [
+    {icon1: statsBarIcon, title: "Total Sales", value: "Rs. XXX.XX", icon2: graphLine1, score: "+5%", scoreColor:"#FBBC05", scoreValue: "more", scoreCaption: "from last week"},
+    {icon1: userIcon, title: "Total Customers", value: "XXXX", icon2: graphLine2, score: "-10%", scoreColor: "#EE5D50", scoreValue: "less", scoreCaption: "from last week"},
+    {icon1: cartIcon, title: "Total Orders", value: "XXXX", icon2: graphLine3, score: "+10%", scoreColor: "#808080", scoreValue: "more", scoreCaption: "from last week"},
+  ]
+
+  // Function to generate a unique ID based on current time and random number
+  const generateUniqueId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex' }}>
         <Sidebar/>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: "#EAEBFF" }}>
         <DrawerHeader sx={{mb: 2}} />
-          <Box sx={{display:'flex', flexDirection: {xs: "column", xl: "row"}, justifyContent: {xs: '', xl: 'space-between'}}}>
+          <Box sx={{display:'flex', flexDirection: {xs: "column", xl: "row"}, justifyContent: {xs: '', xl: 'space-between'}, mb:2}}>
             <Box sx={{mb: {xs: 2, xl: 0}}}>
               <FormControl sx={{ minWidth: 158, padding:0, mr: 1 }}>
                 <InputLabel sx={{top: "-6px",}} id="demo-simple-select-label"><CalendarMonthIcon sx={{verticalAlign:"-6px", mr: 0.5}} /> This Year</InputLabel>
@@ -92,6 +115,35 @@ function App() {
               </Stack>
             </Box>
           </Box>
+
+          {/* Main content starts */}
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <Grid container spacing={2} marginBottom={2}>
+                {detailsCardsData.map((d,i) => (
+                  <Grid item xs={4}>
+                    <DetailsCards key={generateUniqueId()} icon1={d.icon1} title={d.title} value={d.value} icon2={d.icon2} score={d.score} scoreColor={d.scoreColor} scoreValue={d.scoreValue} scoreCaption={d.scoreCaption} />
+                  </Grid>
+                ))}
+              </Grid>
+              <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <Paper elevation={0} sx={{p:2}}>
+                      <TotalOrders />
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={8}>
+                    <Paper elevation={0} sx={{p:2}}>
+                      <SectorPerformance/>
+                    </Paper>
+                  </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={4}>
+              Right
+            </Grid>
+          </Grid>
+
         </Box>
       </Box>
     </ThemeProvider>

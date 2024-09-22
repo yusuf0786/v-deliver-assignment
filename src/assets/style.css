@@ -1,0 +1,4 @@
+.custom-gauge-bar {
+    border-radius: 10px !important; /* Make bars rounded */
+    height: 12px !important; /* Adjust height for slimmer look */
+  }

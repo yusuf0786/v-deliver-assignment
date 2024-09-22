@@ -184,6 +184,7 @@ const theme = createTheme({
             root: {
                 borderRadius: '8px',         // Add border radius
                 border: "0.5px solid #89B0EB",
+                backgroundColor: "#fff",
             },
             icon: {
             // Customize the dropdown icon
@@ -253,8 +254,8 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: '#fff',
-          boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
+          // backgroundColor: '#fff',
+          // boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
         },
       },
     },
