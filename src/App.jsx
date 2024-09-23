@@ -85,7 +85,7 @@ function App() {
         <DrawerHeader sx={{mb: 2}} />
           <Box sx={{display:'flex', flexDirection: {xs: "column", xl: "row"}, justifyContent: {xs: '', xl: 'space-between'}, mb:2}}>
             <Box sx={{mb: {xs: 2, xl: 0}}}>
-              <FormControl sx={{ width: {xs: "100%", lg: "auto"}, minWidth: 158, padding:0, mr: 1, mb: {xs: 1, lg:0} }}>
+              <FormControl sx={{ width: {xs: "100%", md: "auto"}, minWidth: 158, padding:0, mr: 1, mb: {xs: 1, md:0} }}>
                 <InputLabel sx={{top: "-6px",}} id="demo-simple-select-label"><CalendarMonthIcon sx={{verticalAlign:"-6px", mr: 0.5}} /> This Year</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -99,7 +99,7 @@ function App() {
                   <MenuItem value={"Option 3"}>Option 3</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl sx={{ width: {xs: "100%", lg: "auto"}, minWidth: 100, padding:0, mr: 1, mb: {xs: 1, lg:0} }}>
+              <FormControl sx={{ width: {xs: "100%", md: "auto"}, minWidth: 100, padding:0, mr: 1, mb: {xs: 1, md:0} }}>
                 <InputLabel id="demo-simple-select-label">Status</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -113,7 +113,7 @@ function App() {
                   <MenuItem value={"Option 3"}>Option 3</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl sx={{ width: {xs: "100%", lg: "auto"}, minWidth: 120, padding:0 }}>
+              <FormControl sx={{ width: {xs: "100%", md: "auto"}, minWidth: 120, padding:0 }}>
                 <InputLabel id="demo-simple-select-label">Location</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
