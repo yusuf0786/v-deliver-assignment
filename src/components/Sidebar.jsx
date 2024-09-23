@@ -240,50 +240,45 @@ export default function Sidebar() {
                 />
             </Search>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: {xs: open ? "none" : "flex", lg: 'flex'}, gap: 3, padding: "1rem 0", alignItems: "stretch",}}>
-                <IconButton size="large" aria-label="show 21 new notifications" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}>
-                <Badge badgeContent={21} color="secondary">
-                    {/* <MailIcon /> */}
-                    <img src={notifiIcon} alt="notification icon" />
-                </Badge>
-                </IconButton>
-                <IconButton size="large" aria-label="show 53 new chats" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}>
-                <Badge badgeContent={53} color="secondary">
-                    {/* <MailIcon /> */}
-                    <img src={chatIcon} alt="chat icon" />
-                </Badge>
-                </IconButton>
-                <IconButton
-                sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}
-                size="large"
-                aria-label="show 19 new alerts"
-                color="#000"
-                >
-                <Badge badgeContent={17} color="info">
-                    {/* <NotificationsIcon /> */}
-                    <img src={gearIcon} alt="gear icon" />
-                </Badge>
-                </IconButton>
-                <Divider aria-hidden="true" orientation="vertical" sx={{height: "inherit",}} />
-                <Box 
-                onClick={handleProfileMenuOpen}
-                sx={{cursor: "pointer",}}
-                >
-                  <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  color="#000"
-                  sx={{mr: 0.75}}
-                  >
-                    <AccountCircle />
+              <Box sx={{ display: {xs: open ? "none" : "flex", lg: 'flex'}, gap: 3, padding: "1rem 0", alignItems: "stretch",}}>
+                  <IconButton size="large" aria-label="show 21 new notifications" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}>
+                    <Badge badgeContent={21} color="secondary">
+                        {/* <MailIcon /> */}
+                        <img src={notifiIcon} alt="notification icon" />
+                    </Badge>
                   </IconButton>
-                  <span style={{color: "#000",}}>Hi, Saikumar</span>
-                  <ArrowDropDownIcon sx={{color: "#000", verticalAlign:"middle", }}/>
-                </Box>
-            </Box>
+                  <IconButton size="large" aria-label="show 53 new chats" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}}>
+                    <Badge badgeContent={53} color="secondary">
+                        {/* <MailIcon /> */}
+                        <img src={chatIcon} alt="chat icon" />
+                    </Badge>
+                  </IconButton>
+                  <IconButton size="large" aria-label="show 19 new alerts" color="#000" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px",}} >
+                    <Badge badgeContent={17} color="info">
+                        {/* <NotificationsIcon /> */}
+                        <img src={gearIcon} alt="gear icon" />
+                    </Badge>
+                  </IconButton>
+                  <Divider aria-hidden="true" orientation="vertical" sx={{height: "inherit",}} />
+                  <Box 
+                  onClick={handleProfileMenuOpen}
+                  sx={{cursor: "pointer",}}
+                  >
+                    <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    color="#000"
+                    sx={{mr: 0.75}}
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                    <Box sx={{display: {xs:"none", lg:"inline-block"}, color: "#000"}}>Hi, Saikumar</Box>
+                    <ArrowDropDownIcon sx={{color: "#000", verticalAlign:"middle", }}/>
+                  </Box>
+              </Box>
             </Toolbar>
         </AppBar>
         {renderMenu}
