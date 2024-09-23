@@ -20,6 +20,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import otherIcon from '../assets/icons/other-icon.svg'
+import homeIcon from '../assets/icons/home.svg'
+import chatIcon2 from '../assets/icons/chat-icon2.svg'
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -294,9 +296,9 @@ export default function Sidebar() {
             <Divider />
             <List sx={{pt:10}}>
                 {[
-                    {listItemText: "Home", listItemIcon: <HomeIcon />},
+                    {listItemText: "Home", listItemIcon: <img src={homeIcon}/>},
                     {listItemText: "Other", listItemIcon: <img src={otherIcon}/>},
-                    {listItemText: "Messages", listItemIcon: <ChatIcon />},
+                    {listItemText: "Messages", listItemIcon: <img src={chatIcon2}/>},
                 ].map((item, index) => (
                     <ListItem key={item.listItemText} disablePadding sx={{ display: 'block' }}>
                     <ListItemButton

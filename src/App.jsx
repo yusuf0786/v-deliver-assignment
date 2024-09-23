@@ -1,8 +1,8 @@
 import React from 'react';
-import './assets/style.css'
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography, Paper } from '@mui/material';
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography, Paper, IconButton } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import Sidebar from './components/Sidebar';
+import { PendingTickets } from './components/PendingTickets';
 import { ThemeProvider } from '@emotion/react';
 import theme from './assets/theme/theme';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -17,6 +17,9 @@ import cartIcon from './assets/icons/cart-Icon.svg'
 import graphLine1 from './assets/icons/graph-line1.svg'
 import graphLine2 from './assets/icons/graph-line2.svg'
 import graphLine3 from './assets/icons/graph-line3.svg'
+import whatsappIcon from './assets/icons/whatsapp-icon.svg'
+
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -25,6 +28,24 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+}));
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 8,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[200],
+    ...theme.applyStyles('dark', {
+      backgroundColor: theme.palette.grey[800],
+    }),
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: '#FBBC05',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#308fe8',
+    }),
+  },
 }));
 
 function App() {
@@ -118,29 +139,48 @@ function App() {
 
           {/* Main content starts */}
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid item xs={12} xl={8}>
               <Grid container spacing={2} marginBottom={2}>
                 {detailsCardsData.map((d,i) => (
-                  <Grid item xs={4}>
+                  <Grid item xs={12} lg={4}>
                     <DetailsCards key={generateUniqueId()} icon1={d.icon1} title={d.title} value={d.value} icon2={d.icon2} score={d.score} scoreColor={d.scoreColor} scoreValue={d.scoreValue} scoreCaption={d.scoreCaption} />
                   </Grid>
                 ))}
               </Grid>
               <Grid container spacing={2}>
-                  <Grid item xs={4}>
-                    <Paper elevation={0} sx={{p:2}}>
+                  <Grid item xs={12} lg={4}>
+                    <Paper elevation={0} sx={{p:2, height:"100%"}}>
                       <TotalOrders />
                     </Paper>
                   </Grid>
-                  <Grid item xs={8}>
-                    <Paper elevation={0} sx={{p:2}}>
+                  <Grid item xs={12} lg={8}>
+                    <Paper elevation={0} sx={{p:2, height:"100%"}}>
                       <SectorPerformance/>
                     </Paper>
                   </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={4}>
-              Right
+            <Grid item xs={12} xl={4}>
+              <Paper elevation={0} sx={{p:2, height:"100%"}}>
+                <Box sx={{display: "flex", alignItems: "center", mb:3}}>
+                    <IconButton size="large" sx={{backgroundColor:"#EAEBFF", borderRadius: "13px", mr:2}}>
+                        <img src={whatsappIcon} alt="whatsapp icon" />
+                    </IconButton>
+                    <Box>
+                        <Typography variant="caption" color="#808080" gutterBottom>
+                            Total Tickets
+                        </Typography>
+                        <Typography variant="h4" fontWeight={500} >
+                            XXX
+                        </Typography>
+                    </Box>
+                    <Button size='small' variant="contained" sx={{ height: "auto", ml:"auto"}} >Raise a Ticket</Button>
+                </Box>
+                <Stack spacing={2} sx={{ flexGrow: 1, mb:3 }}>
+                  <BorderLinearProgress variant="determinate" value={65} />
+                </Stack>
+                <PendingTickets />
+              </Paper>
             </Grid>
           </Grid>
 

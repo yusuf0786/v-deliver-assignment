@@ -257,6 +257,24 @@ const theme = createTheme({
           // backgroundColor: '#fff',
           // boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
         },
+        elevation0: {
+          boxShadow: 'none',
+        },
+        elevation1: {
+          boxShadow: '0px 18px 40px -10px #7090B01F',
+        },
+        elevation2: {
+          boxShadow: '0px 18px 40px -5px #7090B01F',
+        },
+        elevation3: {
+          boxShadow: '0px 18px 40px 0px #7090B01F',
+        },
+        elevation4: {
+          boxShadow: '0px 18px 40px 5px #7090B01F',
+        },
+        elevation5: {
+          boxShadow: '0px 18px 40px 10px #7090B01F',
+        },
       },
     },
   },
